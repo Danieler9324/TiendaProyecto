@@ -8,17 +8,115 @@
 </head>
 <body>
     <nav>
-        <h1>Tienda Demo</h1>
+        <h1 class="marca">Tienda Demo</h1>
         <div class="botones">
-            <button>Todo</button>
-            <button>Electronica</button>
-            <button>Ropa</button>
-            <button>Libros</button>
+            <button data-filter="todo">Todo</button>
+            <button data-filter="electronica">Electronica</button>
+            <button data-filter="ropa">Ropa</button>
+            <button data-filter="libros">Libros</button>
+        </div>
+        
+        <div class="acciones">
             <input type="input" name="" id="" placeholder="Buscar productos...">
             <button>Carrito</button>
         </div>
+
     </nav>
-    <section class="cards">
+    <section class="cards">"
+        <article data-id="p1" data-category="ropa" data-name="playera Deportiva" data-price="299">
+            <div class="card">
+                <img src="/imagenes/playeraDepo.png" alt="producto">
+                <p>Playera deportiva</p>
+                <p>$299</p>
+                <button class="agregar" id="agregar"> Agregar al carrito</button>
+            </div>
+        </article>
+
+        <article data-id="p2" data-category="electronica" data-name="audifonos" data-price="200">
+            <div class="card">
+                <img src="/imagenes/audifonos.png" alt="producto">
+                <p>Audífonos inalámbricos</p>
+                <p>$200</p>
+                <button class="agregar" id="agregar"> Agregar al carrito </button>
+            </div>
+        </article>
+
+        <article data-id="p3" data-category="libros" data-name="El principito" data-price="300">
+            <div class="card">
+                <img src="/imagenes/elPrincipito.png" alt="producto">
+                <p>Libro: El Principito</p>
+                <p>$300</p>
+                <button class="agregar" id="agregar"> Agregar al carrito </button>
+            </div>
+        </article>
+
+        <article data-id="p4" data-category="ropa" data-name="sudadera" data-price="420">
+            <div class="card">
+                <img src="/imagenes/sudadera.png" alt="producto">
+                <p>Sudadera</p>
+                <p>$420</p>
+                <button class="agregar" id="agregar"> Agregar al carrito </button>
+            </div>
+        </article>
+
+        <article data-id="p5" data-category="electronica" data-name="smartwatch" data-price="395">
+            <div class="card">
+                <img src="/imagenes/smartWatch.png" alt="producto">
+                <p>Smartwatch</p>
+                <p>$395</p>
+                <button class="agregar" id="agregar"> Agregar al carrito </button>
+            </div>
+        </article>
+
+        <article data-id="p6" data-category="ropa" data-name="jeans" data-price="50">
+            <div class="card">
+                <img src="/imagenes/jeans.png" alt="producto">
+                <p>Jeans unisex</p>
+                <p>$50</p>
+                <button class="agregar" id="agregar"> Agregar al carrito </button>
+            </div>
+        </article>
+
+        <article data-id="p7" data-category="electronica" data-name="camara web" data-price="100">
+            <div class="card">
+                <img src="/imagenes/camaraWeb.png" alt="producto">
+                <p>Cámara web HD</p>
+                <p>$100</p>
+                <button class="agregar" id="agregar"> Agregar al carrito </button>
+            </div>
+        </article>
+
+        <article data-id="p8" data-category="libros" data-name="100 años" data-price="60">
+            <div class="card">
+                <img src="/imagenes/100años.png" alt="producto">
+                <p>Libro: 100 años de soledad</p>
+                <p>$60</p>
+                <button class="agregar" id="agregar"> Agregar al carrito </button>
+            </div>
+        </article>
+
+        <article data-id="p9" data-category="ropa" data-name="Tenis" data-price="99">
+            <div class="card">
+                <img src="/imagenes/tenis.png" alt="producto">
+                <p>Tenis casuales</p>
+                <p>$99</p>
+                <button class="agregar" id="agregar"> Agregar al carrito </button>
+            </div>
+        </article>
+
+        <article data-id="p10" data-category="electronica" data-name="teclado" data-price="200">
+            <div class="card">
+                <img src="/imagenes/teclado.png" alt="producto">
+                <p>Teclado mecánico</p>
+                <p>$200</p>
+                <button class="agregar" id="agregar"> Agregar al carrito </button>
+            </div>
+        </article>
     </section>
+
+<aside id="cartPanel" class="cart-panel" aria-hidden="true" tabindex="-1">
+
+</aside>
+
 </body>
 </html>

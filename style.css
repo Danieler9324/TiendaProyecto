@@ -14,6 +14,22 @@ nav {
     width: 100%;
     justify-content: space-between;
     align-items: center;
+    margin-left: auto;
+    padding: 10px 20px; 
+}
+
+.botones {
+    display: flex;
+    justify-content: end;
+    margin-left: auto;
+    gap: 30px;
+}
+
+.marca {
+    margin: 0; 
+    font-size: 2rem; 
+    letter-spacing: .5px;
+    color: white;
 }
 
 nav button {
@@ -21,12 +37,6 @@ nav button {
     border-radius: 4px;
     width: 100px;
     height: 40px;
-}
-
-.botones {
-    margin-left: auto;
-    display: flex;
-    gap: 30px;
 }
 
 input {
@@ -37,9 +47,11 @@ input {
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 20px;
-    padding: 100px 20px 20px;
+    padding: 100px 20px 20px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .card {
@@ -51,4 +63,15 @@ input {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    align-items: center;
+}
+
+.cards .card img {
+    width: 90%;
+    height: 80%;
+}
+
+.agregar {
+    background-color: rgb(1, 185, 1);
+    border-radius: 5px;
 }
