@@ -4,22 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Tienda Demo</title>
+    <title>Tienda</title>
 </head>
 <body>
     <header>
         <nav>
-            <h1 class="marca">Tienda Demo</h1>
-            <div class="botones">
-                <button data-filter="todo">Todo</button>
-                <button data-filter="electronica">Electronica</button>
-                <button data-filter="ropa">Ropa</button>
-                <button data-filter="libros">Libros</button>
+            <h1 class="marca">Tienda</h1>
+            <div class="centro-nav">
+                <div class="botones">
+                    <button data-filter="todo">Todo</button>
+                    <button data-filter="electronica">Electronica</button>
+                    <button data-filter="ropa">Ropa</button>
+                    <button data-filter="libros">Libros</button>
+                </div>
+
+                <div class="acciones">
+                    <input type="input" id="buscar" placeholder="Buscar productos...">
+                    <button id="alternarCarrito" class="carrito-btn">
+                        Carrito <span id="cuentaCarrito"></span>
+                    </button>
+                </div>
             </div>
-            
-            <div class="acciones">
-                <input type="input" name="buscar" id="buscar" placeholder="Buscar productos...">
-                <button id="alternarCarrito" class="carrito-btn" aria-expanded="false" aria-controls="cartPanel">Carrito (<span id="cuentaCarrito"></span>)</button>
+
+            <div id="perfil">
+                <p>HOLA <span id="nombrePerfil"></span>!</p>
             </div>
 
         </nav>
@@ -32,7 +40,7 @@
                     <img src="/imagenes/playeraDepo.png" alt="producto">
                     <h3>Playera deportiva</h3>
                     <p>$299</p>
-                    <button class="agregar"> Agregar al carrito</button>
+                    <button class="agregar"> Agregar al carrito </button>
                 </div>
             </article>
 

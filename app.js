@@ -1,4 +1,3 @@
-// ELEMENTOS DEL DOM
 const productos = document.getElementById("productos");
 const buscar = document.getElementById("buscar");
 const botones = document.querySelectorAll(".botones button");
@@ -12,9 +11,12 @@ const contadorCarrito = document.getElementById("cuentaCarrito");
 const subtotalCarrito = document.getElementById("subtotal");
 const pagar = document.getElementById("pagarBtn");
 
+const nombre = localStorage.getItem("usuario")
+
+document.getElementById("nombrePerfil").textContent = nombre;
+
 let carrito = [];
 
-// Formato de dinero
 function money(n) {
     return Number(n || 0).toLocaleString("es-MX", {
         style: "currency",
@@ -22,17 +24,14 @@ function money(n) {
     });
 }
 
-// Abrir carrito
 function abrirCarrito() {
     panelCarrito.classList.add("open");
 }
 
-// Cerrar carrito
 function cerrarCarrito() {
     panelCarrito.classList.remove("open");
 }
 
-// Render del carrito
 function carritoRenderizar() {
     productosCarrito.innerHTML = "";
     let subtotal = 0;
@@ -41,10 +40,13 @@ function carritoRenderizar() {
         const linea = it.price * it.can;
         subtotal += linea;
 
+        const image = document.createElement("img");
+        image.src = it.img;
+        image.className = "cart-thumb";
+
         const row = document.createElement("div");
         row.className = "cart-item";
 
-        // izquierda
         const left = document.createElement("div");
         const title = document.createElement("p");
         title.className = "item-title";
@@ -53,10 +55,10 @@ function carritoRenderizar() {
         const unit = document.createElement("small");
         unit.textContent = money(it.price) + " c/u";
 
+        left.appendChild(image);
         left.appendChild(title);
         left.appendChild(unit);
 
-        // derecha
         const right = document.createElement("div");
         right.className = "item-controls";
 
@@ -99,7 +101,6 @@ function carritoRenderizar() {
     subtotalCarrito.textContent = money(subtotal);
 }
 
-// Agregar producto
 function agregarCarrito(item) {
     const found = carrito.find(p => p.id === item.id);
 
@@ -110,20 +111,19 @@ function agregarCarrito(item) {
             id: item.id,
             name: item.name,
             price: item.price,
-            can: 1
+            can: 1,
+            img: item.img
         });
     }
 
     carritoRenderizar();
 }
 
-// Quitar producto
 function removerCarrito(id) {
     carrito = carrito.filter(p => p.id !== id);
     carritoRenderizar();
 }
 
-// Cambiar cantidad
 function cambiarCantidad(id, delta) {
     const ob = carrito.find(p => p.id === id);
     if (!ob) return;
@@ -137,7 +137,6 @@ function cambiarCantidad(id, delta) {
     }
 }
 
-// Filtro de categoría
 function aplicaFiltro(filter) {
     const cartas = productos.querySelectorAll("article");
 
@@ -147,7 +146,6 @@ function aplicaFiltro(filter) {
     });
 }
 
-// Buscar producto
 function aplicarBusqueda(q) {
     const query = q.trim().toLowerCase();
 
@@ -159,7 +157,6 @@ function aplicarBusqueda(q) {
     });
 }
 
-// EVENTOS
 alternarCarrito.addEventListener("click", () => {
     if (panelCarrito.classList.contains("open")) cerrarCarrito();
     else abrirCarrito();
@@ -167,7 +164,6 @@ alternarCarrito.addEventListener("click", () => {
 
 cerrarCarritoBtn.addEventListener("click", cerrarCarrito);
 
-// Evento agregar al carrito
 productos.addEventListener("click", (e) => {
     const btn = e.target.closest(".agregar");
     if (!btn) return;
@@ -176,24 +172,22 @@ productos.addEventListener("click", (e) => {
     const id = card.dataset.id;
     const name = card.dataset.name;
     const price = Number(card.dataset.price);
+    const img = card.querySelector("img").src;
 
-    agregarCarrito({ id, name, price });
+    agregarCarrito({ id, name, price, img });
     abrirCarrito();
 });
 
-// Botones de categorías
 botones.forEach(btn => {
     btn.addEventListener("click", () => {
         aplicaFiltro(btn.dataset.filter);
     });
 });
 
-// Búsqueda
 buscar.addEventListener("input", () => {
     aplicarBusqueda(buscar.value);
 });
 
-// Eventos dentro del carrito
 productosCarrito.addEventListener("click", (e) => {
     const btn = e.target.closest("button");
     if (!btn) return;
@@ -206,7 +200,6 @@ productosCarrito.addEventListener("click", (e) => {
     else if (action === "remove") removerCarrito(id);
 });
 
-// Pagar
 pagar.addEventListener("click", () => {
     if (!carrito.length) return alert("Tu carrito está vacío");
 
