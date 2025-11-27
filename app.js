@@ -16,12 +16,24 @@ const panelFavoritos = document.getElementById("panelFavoritos")
 const cerrarFavoritosBtn = document.getElementById("cerrarFavoritos")
 const productosFavoritos = document.getElementById("objetosFavoritos")
 
+const alertaPersonalizada = document.getElementById("mensPerso")
+const mensajeModalPagar = document.getElementById("mensajeModalPagar")
+
 const nombre = localStorage.getItem("usuario")
 
 document.getElementById("nombrePerfil").textContent = nombre;
 
 let carrito = [];
 let favoritos = [];
+
+function mostrarMensaje(m) {
+    mensajeModalPagar.textContent = m;
+    alertaPersonalizada.style.display = "block";
+}
+
+function cerrarMensaje() {
+    alertaPersonalizada.style.display = "none";
+}
 
 function money(n) {
     return Number(n || 0).toLocaleString("es-MX", {
@@ -279,11 +291,11 @@ productosCarrito.addEventListener("click", (e) => {
 });
 
 pagar.addEventListener("click", () => {
-    if (!carrito.length) return alert("Tu carrito está vacío");
+    if (!carrito.length) return mostrarMensaje("Tu carrito está vacío");
 
     const total = carrito.reduce((sum, it) => sum + it.price * it.can, 0);
 
-    alert("Gracias por tu compra!\nTotal: " + money(total));
+    mostrarMensaje("Gracias por tu compra!\nTotal: " + money(total));
 
     carrito = [];
     carritoRenderizar();
@@ -310,4 +322,17 @@ productosFavoritos.addEventListener("click", (e) => {
         const btnFav = card.querySelector(".favorito");
         if (btnFav) btnFav.textContent = "⭐";
     }
+});
+
+const hamburguesaBtn = document.querySelector(".menu-hamburguesa");
+const menuHamburguesa = document.querySelector(".hamburguesa-opcion");
+
+hamburguesaBtn.addEventListener("click", (e) => {
+    e.stopPropagation(); 
+    menuHamburguesa.classList.toggle("show");
+});
+
+// Cerrar si clican fuera
+document.addEventListener("click", () => {
+    menuHamburguesa.classList.remove("show");
 });
