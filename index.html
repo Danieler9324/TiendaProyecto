@@ -20,9 +20,10 @@
 
                 <div class="acciones">
                     <input type="input" id="buscar" placeholder="Buscar productos...">
-                    <button id="alternarCarrito" class="carrito-btn">
+                    <button id="alternarCarrito">
                         Carrito <span id="cuentaCarrito"></span>
                     </button>
+                    <button id="alternarFavoritos">Favoritos</button>
                 </div>
             </div>
 
@@ -40,7 +41,10 @@
                     <img src="/imagenes/playeraDepo.png" alt="producto">
                     <h3>Playera deportiva</h3>
                     <p>$299</p>
-                    <button class="agregar"> Agregar al carrito </button>
+                    <div class="acciones-card">
+                        <button class="agregar">Agregar al carrito</button>
+                        <button class="favorito">⭐</button>
+                    </div>
                 </div>
             </article>
 
@@ -49,7 +53,10 @@
                     <img src="/imagenes/audifonos.png" alt="producto">
                     <h3>Audífonos inalámbricos</h3>
                     <p>$200</p>
-                    <button class="agregar"> Agregar al carrito </button>
+                    <div class="acciones-card">
+                        <button class="agregar">Agregar al carrito</button>
+                        <button class="favorito">⭐</button>
+                    </div>
                 </div>
             </article>
 
@@ -58,7 +65,10 @@
                     <img src="/imagenes/elPrincipito.png" alt="producto">
                     <h3>Libro: El Principito</h3>
                     <p>$300</p>
-                    <button class="agregar"> Agregar al carrito </button>
+                    <div class="acciones-card">
+                        <button class="agregar">Agregar al carrito</button>
+                        <button class="favorito">⭐</button>
+                    </div>
                 </div>
             </article>
 
@@ -67,7 +77,10 @@
                     <img src="/imagenes/sudadera.png" alt="producto">
                     <h3>Sudadera</h3>
                     <p>$420</p>
-                    <button class="agregar"> Agregar al carrito </button>
+                    <div class="acciones-card">
+                        <button class="agregar">Agregar al carrito</button>
+                        <button class="favorito">⭐</button>
+                    </div>
                 </div>
             </article>
 
@@ -76,7 +89,10 @@
                     <img src="/imagenes/smartWatch.png" alt="producto">
                     <h3>Smartwatch</h3>
                     <p>$395</p>
-                    <button class="agregar"> Agregar al carrito </button>
+                    <div class="acciones-card">
+                        <button class="agregar">Agregar al carrito</button>
+                        <button class="favorito">⭐</button>
+                    </div>
                 </div>
             </article>
 
@@ -85,7 +101,10 @@
                     <img src="/imagenes/jeans.png" alt="producto">
                     <h3>Jeans unisex</h3>
                     <p>$50</p>
-                    <button class="agregar"> Agregar al carrito </button>
+                    <div class="acciones-card">
+                        <button class="agregar">Agregar al carrito</button>
+                        <button class="favorito">⭐</button>
+                    </div>
                 </div>
             </article>
 
@@ -94,7 +113,10 @@
                     <img src="/imagenes/camaraWeb.png" alt="producto">
                     <h3>Cámara web HD</h3>
                     <p>$100</p>
-                    <button class="agregar"> Agregar al carrito </button>
+                    <div class="acciones-card">
+                        <button class="agregar">Agregar al carrito</button>
+                        <button class="favorito">⭐</button>
+                    </div>
                 </div>
             </article>
 
@@ -103,7 +125,10 @@
                     <img src="/imagenes/100años.png" alt="producto">
                     <h3>Libro: 100 años de soledad</h3>
                     <p>$60</p>
-                    <button class="agregar"> Agregar al carrito </button>
+                    <div class="acciones-card">
+                        <button class="agregar">Agregar al carrito</button>
+                        <button class="favorito">⭐</button>
+                    </div>
                 </div>
             </article>
 
@@ -112,7 +137,10 @@
                     <img src="/imagenes/tenis.png" alt="producto">
                     <h3>Tenis casuales</h3>
                     <p>$99</p>
-                    <button class="agregar"> Agregar al carrito </button>
+                    <div class="acciones-card">
+                        <button class="agregar">Agregar al carrito</button>
+                        <button class="favorito">⭐</button>
+                    </div>
                 </div>
             </article>
 
@@ -121,7 +149,10 @@
                     <img src="/imagenes/teclado.png" alt="producto">
                     <h3>Teclado mecánico</h3>
                     <p>$200</p>
-                    <button class="agregar"> Agregar al carrito </button>
+                    <div class="acciones-card">
+                        <button class="agregar">Agregar al carrito</button>
+                        <button class="favorito">⭐</button>
+                    </div>
                 </div>
             </article>
         </section>
@@ -144,6 +175,18 @@
         </div>
         <button id="pagarBtn" class="btn-pagar"> Pagar </button>
     </div>
+</aside>
+
+<aside id="panelFavoritos" class="panel-favoritos" aria-hidden="true" tabindex="-1">
+    <div class="headerFavoritos">
+        <h2>Favoritos</h2>
+        <button id="cerrarFavoritos" aria-label="Cerrar favoritos"> X </button>
+    </div>
+
+    <div id="objetosFavoritos" class="objetos-favoritos">
+
+    </div>
+
 </aside>
 
 <footer class="site-footer">

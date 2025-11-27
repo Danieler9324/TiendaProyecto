@@ -11,11 +11,17 @@ const contadorCarrito = document.getElementById("cuentaCarrito");
 const subtotalCarrito = document.getElementById("subtotal");
 const pagar = document.getElementById("pagarBtn");
 
+const alternarFavoritos = document.getElementById("alternarFavoritos")
+const panelFavoritos = document.getElementById("panelFavoritos")
+const cerrarFavoritosBtn = document.getElementById("cerrarFavoritos")
+const productosFavoritos = document.getElementById("objetosFavoritos")
+
 const nombre = localStorage.getItem("usuario")
 
 document.getElementById("nombrePerfil").textContent = nombre;
 
 let carrito = [];
+let favoritos = [];
 
 function money(n) {
     return Number(n || 0).toLocaleString("es-MX", {
@@ -157,6 +163,56 @@ function aplicarBusqueda(q) {
     });
 }
 
+function abrirFavoritos() {
+    panelFavoritos.classList.add("open")
+}
+
+function cerrarFavoritos() {
+    panelFavoritos.classList.remove("open") 
+}
+
+function favoritosRender() {
+    productosFavoritos.innerHTML = "";
+
+    favoritos.forEach(ob => {
+        const row = document.createElement("div");
+        row.className = "item-favorito";
+
+        const image = document.createElement("img");
+        image.src = ob.img;
+        image.className = "cart-thumb";
+
+        const title = document.createElement("p");
+        title.textContent = ob.name;
+
+        const rm = document.createElement("button");
+        rm.textContent = "Quitar";
+        rm.dataset.id = ob.id;
+        rm.className = "remove-btn";
+
+        row.appendChild(image);
+        row.appendChild(title);
+        row.appendChild(rm);
+
+        productosFavoritos.appendChild(row);
+    });
+}
+
+function agregarFavorito(item) {
+    const existe = favoritos.find(f => f.id === item.id);
+
+    if (!existe) {
+        favoritos.push(item);
+    }
+
+    favoritosRender();
+}
+
+function removerFavorito(id) {
+    favoritos = favoritos.filter(f => f.id !== id);
+    favoritosRender();
+}
+
 alternarCarrito.addEventListener("click", () => {
     if (panelCarrito.classList.contains("open")) cerrarCarrito();
     else abrirCarrito();
@@ -165,18 +221,40 @@ alternarCarrito.addEventListener("click", () => {
 cerrarCarritoBtn.addEventListener("click", cerrarCarrito);
 
 productos.addEventListener("click", (e) => {
-    const btn = e.target.closest(".agregar");
-    if (!btn) return;
+    const btnCarrito = e.target.closest(".agregar");
+    if (btnCarrito) {
+        const card = btnCarrito.closest("article");
+        const id = card.dataset.id;
+        const name = card.dataset.name;
+        const price = Number(card.dataset.price);
+        const img = card.querySelector("img").src;
 
-    const card = btn.closest("article");
-    const id = card.dataset.id;
-    const name = card.dataset.name;
-    const price = Number(card.dataset.price);
-    const img = card.querySelector("img").src;
+        agregarCarrito({ id, name, price, img });
+        abrirCarrito();
+        return;
+    }
 
-    agregarCarrito({ id, name, price, img });
-    abrirCarrito();
+    const btnFav = e.target.closest(".favorito");
+    if (btnFav) {
+
+        const card = btnFav.closest("article");
+        const id = card.dataset.id;
+        const name = card.dataset.name;
+        const price = Number(card.dataset.price);
+        const img = card.querySelector("img").src;
+
+        if (btnFav.textContent === "⭐") {
+            btnFav.textContent = "❤️";
+            agregarFavorito({ id, name, img });
+        } else {
+            btnFav.textContent = "⭐";
+            removerFavorito(id);
+        }
+
+        abrirFavoritos();
+    }
 });
+
 
 botones.forEach(btn => {
     btn.addEventListener("click", () => {
@@ -210,4 +288,26 @@ pagar.addEventListener("click", () => {
     carrito = [];
     carritoRenderizar();
     cerrarCarrito();
+});
+
+alternarFavoritos.addEventListener("click", () => {
+    if (panelFavoritos.classList.contains("open")) cerrarFavoritos();
+    else abrirFavoritos();
+});
+
+cerrarFavoritosBtn.addEventListener("click", cerrarFavoritos);
+
+productosFavoritos.addEventListener("click", (e) => {
+    const btn = e.target.closest("button");
+    if (!btn) return;
+
+    const id = btn.dataset.id;
+    removerFavorito(id);
+
+    const card = productos.querySelector(`article[data-id="${id}"]`);
+    
+    if (card) {
+        const btnFav = card.querySelector(".favorito");
+        if (btnFav) btnFav.textContent = "⭐";
+    }
 });

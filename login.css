@@ -1,6 +1,19 @@
+:root {
+    --color-fuente: white;
+    --fondo: black;
+    --fondo-contenedor: gray;
+    --verde: green;
+    --verde-hover: rgb(0, 76, 0);
+}   
+
+button {
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+}
+
 body {
     display: flex;
-    background-color: black;
+    background-color: var(--fondo);
     font-family: "Arial", sans-serif ;
     justify-content: center;
     align-items: center;
@@ -9,7 +22,7 @@ body {
 }
 
 .contenedor {
-    background-color: gray;
+    background-color: var(--fondo-contenedor);
     border-radius: 10px;
     align-items: center;
     justify-content: center;
@@ -25,21 +38,27 @@ body {
 
 .contenido input {
     border-radius: 4px;
-    color: white;
-    background-color: black ;
+    color: var(--color-fuente);
+    background-color: var(--fondo) ;
     width: 200px;
-    height: 60px;
+    height: 50px;
+    font-size: 15px;
 }
 
 .btn-login {
     margin-bottom: 10px;
-    border-radius: 3px;
+    border-radius: 5px;
     width: 200px;
-    height: 30px;
-    color: white;
-    background-color: green
-    ;
+    height: 40px;
+    color: var(--color-fuente);
+    background-color: var(--verde);
 }
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    background-color: var(--verde-hover);
+}
+
 .wrapper {
     display: flex;
     flex-direction: column;  
