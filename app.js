@@ -16,8 +16,16 @@ const panelFavoritos = document.getElementById("panelFavoritos")
 const cerrarFavoritosBtn = document.getElementById("cerrarFavoritos")
 const productosFavoritos = document.getElementById("objetosFavoritos")
 
+const alternarHistorial = document.getElementById("alternarHistorial")
+const panelHistorial = document.getElementById("panelHistorial")
+const cerrarHistorialBtn = document.getElementById("cerrarHistorial")
+const objetosHistorial = document.getElementById("objetosHistorial")
+
 const alertaPersonalizada = document.getElementById("mensPerso")
 const mensajeModalPagar = document.getElementById("mensajeModalPagar")
+
+const hamburguesaBtn = document.querySelector(".menu-hamburguesa");
+const menuHamburguesa = document.querySelector(".hamburguesa-opcion");
 
 const nombre = localStorage.getItem("usuario")
 
@@ -25,6 +33,7 @@ document.getElementById("nombrePerfil").textContent = nombre;
 
 let carrito = [];
 let favoritos = [];
+let historial = [];
 
 function mostrarMensaje(m) {
     mensajeModalPagar.textContent = m;
@@ -225,12 +234,55 @@ function removerFavorito(id) {
     favoritosRender();
 }
 
+function abrirHistorial() {
+    panelHistorial.classList.add("open")
+}
+
+function cerrarHistorial() {
+    panelHistorial.classList.remove("open")
+}
+
+function historialRender() {
+    objetosHistorial.innerHTML=""
+
+    historial.forEach((compra,index) => {
+        const div = document.createElement("div")
+        div.className = "item-historial"
+
+        let html = `
+            <h4>Compra #${index + 1} – ${compra.fecha}</h4>
+            <p><strong>Total:</strong> ${money(compra.total)}</p>
+            <ul>
+        `;
+
+        compra.productos.forEach(p => {
+            html += `<li>${p.can} x ${p.name} (${money(p.price)} c/u)</li>`;
+        });
+
+        html += "</ul>";
+
+        div.innerHTML = html;
+        objetosHistorial.appendChild(div);
+    })
+}
+
+function guardarCompra(lista, total) {
+    const fecha = new Date().toLocaleDateString("es-MX")
+
+    historial.push ({fecha,total,productos: lista.map(it => ({
+        id: it.id,
+        name: it.name,
+        price: it.price,
+        can: it.can
+        }))
+    })
+    historialRender()
+}
+
 alternarCarrito.addEventListener("click", () => {
     if (panelCarrito.classList.contains("open")) cerrarCarrito();
     else abrirCarrito();
 });
-
-cerrarCarritoBtn.addEventListener("click", cerrarCarrito);
 
 productos.addEventListener("click", (e) => {
     const btnCarrito = e.target.closest(".agregar");
@@ -295,6 +347,7 @@ pagar.addEventListener("click", () => {
 
     const total = carrito.reduce((sum, it) => sum + it.price * it.can, 0);
 
+    guardarCompra(carrito, total);
     mostrarMensaje("Gracias por tu compra!\nTotal: " + money(total));
 
     carrito = [];
@@ -306,8 +359,6 @@ alternarFavoritos.addEventListener("click", () => {
     if (panelFavoritos.classList.contains("open")) cerrarFavoritos();
     else abrirFavoritos();
 });
-
-cerrarFavoritosBtn.addEventListener("click", cerrarFavoritos);
 
 productosFavoritos.addEventListener("click", (e) => {
     const btn = e.target.closest("button");
@@ -324,15 +375,20 @@ productosFavoritos.addEventListener("click", (e) => {
     }
 });
 
-const hamburguesaBtn = document.querySelector(".menu-hamburguesa");
-const menuHamburguesa = document.querySelector(".hamburguesa-opcion");
+alternarHistorial.addEventListener("click", () => {
+    if (panelHistorial.classList.contains("open")) cerrarHistorial();
+    else abrirHistorial();
+});
 
 hamburguesaBtn.addEventListener("click", (e) => {
     e.stopPropagation(); 
     menuHamburguesa.classList.toggle("show");
 });
 
-// Cerrar si clican fuera
 document.addEventListener("click", () => {
     menuHamburguesa.classList.remove("show");
 });
+
+cerrarCarritoBtn.addEventListener("click", cerrarCarrito);
+cerrarFavoritosBtn.addEventListener("click", cerrarFavoritos);
+cerrarHistorialBtn.addEventListener("click", cerrarHistorial);

@@ -27,10 +27,9 @@
             <div class="hamburguesa-menu">
                 <button class="menu-hamburguesa"> ≡ </button>
                 <div class="hamburguesa-opcion">
-                    <button id="alternarCarrito">
-                        Carrito <span id="cuentaCarrito"></span>
-                    </button>
+                    <button id="alternarCarrito">Carrito <span id="cuentaCarrito"></span></button>
                     <button id="alternarFavoritos">Favoritos</button>
+                    <button id="alternarHistorial">Historial</button>
                 </div>
             </div>
         </nav>
@@ -38,7 +37,7 @@
 
     <main class="contenedor">
         <section class="cartas" id="productos">
-            <article data-id="p1" data-category="ropa" data-name="playera Deportiva" data-  price="299">
+            <article data-id="p1" data-category="ropa" data-name="playera Deportiva" data-price="299">
                 <div class="carta">
                     <div class="contenedor-img">
                         <img src="/imagenes/playeraDepo.png" alt="producto">
@@ -186,7 +185,17 @@
     </div>
 
     <div id="objetosFavoritos" class="objetos-favoritos">
+    </div>
 
+</aside>
+
+<aside id="panelHistorial" class="panel-historial" aria-hidden="true" tabindex="-1">
+    <div class="headerHistorial">
+        <h2>Historial de compras</h2>
+        <button id="cerrarHistorial" aria-label="Cerrar historial"> X </button>
+    </div>
+
+    <div id="objetosHistorial" class="objetos-historial">
     </div>
 
 </aside>
