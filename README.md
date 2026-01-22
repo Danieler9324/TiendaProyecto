@@ -1,3 +1,16 @@
-# Proyecto Final paginas web
+# Tienda web basica
+Este proyecto consiste en una pagina web básica desarrollada con HTML, CSS y JavaScript.
 
-Bienvenido este es el repo donde hice mi pagina web de una tienda muy básica use HTML, CSS y JS, use la funcion de localStorage en el JS para que almacenara en el navegador el nombre de usuario que se ingrese en el login, use display flex mayormente en el css ya que se me hace el mas comodo de manipular y puede llegar a ser muy flexible (vaya la redundancia)
+El objetivo del proyecto es practicar el desarrollo web.
+
+## Tecnologias usadas
+- HTML
+- CSS
+- JavaScript
+
+## Funcionalidades 
+- Inicio de sesion basico (sin base de datos)
+- Almacenamiento del nombre de usuario usando localStorage.
+- Interfaz responsiva usando flexbox
+
+## Para ver la pagina web puedes dar click en el siguiente enlace (el inicio de sesion no esta disponible):  
