@@ -13,4 +13,7 @@ El objetivo del proyecto es practicar el desarrollo web.
 - Almacenamiento del nombre de usuario usando localStorage.
 - Interfaz responsiva usando flexbox
 
-## Para ver la pagina web puedes dar click en el siguiente enlace (el inicio de sesion no esta disponible):  
+## Ejecucion
+Para ver la pagina web puedes dar click en el siguiente enlace (el inicio de sesion no esta disponible):  
+
+https://danieler9324.github.io/TiendaProyecto/
